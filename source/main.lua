@@ -7,6 +7,13 @@ import "CoreLibs/timer"
 import "monthDraw.lua"
 import "date.lua"
 
+-- playdate.display.setRefreshRate(1)
+
+local img = playdate.graphics.image.new("image/menuimg.png")
+playdate.setMenuImage(img)
+playdate.getSystemMenu():addMenuItem("nirav ko",function()
+end)
+
 font_poppins = playdate.graphics.font.new("./font/font-pd-2") --poppinspd for full black
 font_small_poppins = playdate.graphics.font.new("./font/popsmm")
 
@@ -33,7 +40,7 @@ function updateTime()
     local timeStr = string.format("%02d",time.hour) .. ":" .. string.format("%02d",time.minute)
     local fontWidth = font_poppins:getTextWidth(timeStr)
     playdate.graphics.drawText(timeStr, 200-fontWidth/2,140 )
-    playdate.timer.performAfterDelay(60*1000, updateTime)
+    -- playdate.timer.performAfterDelay(60*1000, updateTime)
 end
 
 function updateDate()
@@ -64,15 +71,19 @@ function updateDate()
 
     playdate.graphics.setDrawOffset(0,0)
 
-    playdate.timer.performAfterDelay(2*60*60*1000, updateDate)
+    -- playdate.timer.performAfterDelay(2*60*60*1000, updateDate)
 end
-
-updateTime()
-updateDate()
 
 function playdate.update()
-    playdate.timer.updateTimers()
+    -- playdate.timer.updateTimers()
+    updateTime()
+    updateDate()
+    playdate.wait(30*1000)
 end
+
+
+  
+
 
 
 

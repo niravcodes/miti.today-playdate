@@ -17,10 +17,10 @@ local daysInYears ={
 
 -- The array daysInYears starts from 2075 Baisakh 1
 -- That translates to 2018 April 14
--- The timestamp below is seconds from 2000,1,1 to 2018,3,14
+-- The timestamp below is seconds from 2000,1,1 UTC to 2018,3,14 NPT
 -- as playdate time starts at 2000,1,1
 
-local startingTimestamp = 574300800
+local startingTimestamp = 574300800 - 5*60*60 - 45*60 -- unix time - jan1UTC2000 - 5:45
 
 function getDate(curSecFrom2000)
     local seconds = curSecFrom2000

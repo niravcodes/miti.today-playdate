@@ -1,0 +1,7 @@
+name=Miti Today
+author=niravko.com
+description=Displays time and date and a very fun image. For use as standby desk clock.
+bundleID=com.niravko.miti.today
+version=1.0
+buildNumber=1
+imagePath=launcherImages
