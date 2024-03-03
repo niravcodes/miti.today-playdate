@@ -1,13 +1,13 @@
 local monthClips = {
     playdate.geometry.rect.new(0, 0, 64, 31),
     playdate.geometry.rect.new(67, 0, 44, 31),
-    playdate.geometry.rect.new(76, 0, 41, 31),
     playdate.geometry.rect.new(117, 0, 60, 31),
     playdate.geometry.rect.new(182, 0, 59, 31),
     playdate.geometry.rect.new(246, 0, 38, 31),
     playdate.geometry.rect.new(289, 0, 64, 31),
     playdate.geometry.rect.new(359, 0, 75, 31),
     playdate.geometry.rect.new(437, 0, 55, 31),
+    playdate.geometry.rect.new(495, 0, 37, 31), 
     playdate.geometry.rect.new(537, 0, 42, 31),
     playdate.geometry.rect.new(583, 0, 78, 31),
     playdate.geometry.rect.new(665, 0, 33, 31)

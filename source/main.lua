@@ -41,7 +41,7 @@ else
 end
 
 
-function updateTime()
+function updateTime(time)
     -- make black
     playdate.graphics.fillRect(0, 0, 400, 205)
 
@@ -52,21 +52,24 @@ function updateTime()
     playdate.graphics.setFont(font_poppins)
 
     -- draw time
-    local time = playdate.getTime()
+    if (time == nil) then
+        time = playdate.getTime()
+    end
     local timeStr = string.format("%02d",time.hour) .. ":" .. string.format("%02d",time.minute)
     local fontWidth = font_poppins:getTextWidth(timeStr)
     playdate.graphics.drawText(timeStr, 200-fontWidth/2, 140)
 end
 
-function updateDate()
+function updateDate(nepDate)
     -- make black
     playdate.graphics.fillRect(0, 205, 400, 240)
 
     -- set font to small regular poppins
     playdate.graphics.setFont(font_small_poppins)
 
-    -- get time and date
-    local nepDate = getDate(playdate.getSecondsSinceEpoch())
+    if(nepDate == nil) then
+        nepDate = getDate(playdate.getSecondsSinceEpoch())
+    end
 
     local gapWidth = 7 
     local monthWidth = getMonthWidth(nepDate[2])
@@ -116,8 +119,40 @@ playdate.getSystemMenu():addOptionsMenuItem("image", {"buffalo", "annapurna", "r
 end)
 
 
+local testmode = false 
+local testDate = {2076,1,1}
+local testTime = {["hour"]=1, ["minute"]=0}
+
 function playdate.update()
-    updateTime()
-    updateDate()
-    playdate.wait(40*1000)
+    if (not testmode) then
+        updateTime()
+        updateDate()
+        playdate.wait(60*1000)
+    else
+        updateTime(testTime)
+        updateDate(testDate)
+        testDate[3] += 1
+        if (testDate[3]>30)then
+            testDate[2] += 1
+            testDate[3] = 1
+        end
+        if (testDate[2]>=12) then
+            testDate[2] = 1
+            testDate[1] += 1
+        end
+        if (testDate[1]==2085) then
+            testDate = {2076,1,1}
+        end
+
+        testTime["minute"] += 1
+        if testTime["minute"] >= 60 then
+            testTime["hour"]+=1
+            testTime["minute"]=1
+        end
+        if testTime["hour"] >=23 then
+            testTime = {["hour"]=1, ["minute"]=0}
+        end
+
+        playdate.wait(100)
+    end
 end
